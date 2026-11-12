@@ -40,7 +40,8 @@ def run_agent(question: str):
     tools = [get_product_price, apply_discount]
     tools_dict = {t.name: t for t in tools}
 
-    llm = init_chat_model(f"ollama:{MODEL}", temperature=0)
+    # llm = init_chat_model(f"ollama:{MODEL}", temperature=0)
+    llm = init_chat_model("openai:gpt-5.5", temperature=0)
     llm_with_tools = llm.bind_tools(tools)
 
     print(f"Question: {question}")
@@ -107,4 +108,4 @@ def run_agent(question: str):
 if __name__ == "__main__":
     print("Hello LangChain Agent (.bind_tools)!")
     print()
-    result = run_agent("What is the price of a laptop after applying a gold discount?")
+    result = run_agent("What is the price of headphones after applying a silver discount?")
